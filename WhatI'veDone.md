@@ -1,0 +1,1 @@
+No caso, seguindo a lógica da aula de node, decidi fazer uma rota que possa escolher o usuário por meio da letra inicial do nome dele.
