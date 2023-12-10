@@ -25,6 +25,25 @@ class UserController implements Crud {
     return response.status(httpStatus).send(values);
   };
 
+  getUsersByInitial = async (request: Request, response: Response) => {
+    try {
+      const { letter } = request.params;
+      const { httpStatus, values } = await this.citi.getAll();
+
+      // Filtrar usuários cujos nomes começam com a letra especificada
+      const filteredUsers = values.filter((user: any) =>
+        user.firstName.toLowerCase().startsWith(letter.toLowerCase())
+      );
+
+      return response.status(httpStatus).send(filteredUsers);
+    } catch (error) {
+      console.error("Erro ao obter usuários por inicial:", error);
+      return response
+        .status(500)
+        .send({ message: "Erro interno do servidor." });
+    }
+  };
+
   delete = async (request: Request, response: Response) => {
     const { id } = request.params;
 
